@@ -1,4 +1,6 @@
-import 'package:uuid/uuid.dart';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 
 class Comprobante {
   final String nombre;
@@ -7,6 +9,8 @@ class Comprobante {
   late String identificador;
 
   Comprobante(this.nombre, this.telefono, this.vendedor) {
-    this.identificador = Uuid().v4();
+    var passHash =
+        sha256.convert(utf8.encode(nombre + telefono + vendedor + "ALBRECHT"));
+    this.identificador = passHash.toString();
   }
 }
