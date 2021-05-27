@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import 'package:comprobante/app/data/models/Comprobante.dart';
+import 'package:comprobante/app/routes/app_pages.dart';
+
 class HomeController extends GetxController {
   var nombreInputController = TextEditingController(text: "");
   var telefonoInputController = TextEditingController(text: "");
@@ -45,6 +48,21 @@ class HomeController extends GetxController {
     }
   }
 
+  void _irVistaPrevia() {
+    var nombre = nombreInputController.text;
+    var tel = telefonoInputController.text;
+    var vendedor = vendedorInputController.text;
+    var comprobante = Comprobante(nombre, tel, vendedor);
+
+    _clear();
+
+    Get.back();
+    Get.toNamed(
+      Routes.VISTA_PREVIA,
+      arguments: comprobante,
+    );
+  }
+
   void pregunta() {
     var nombre = nombreInputController.text;
     var tel = telefonoInputController.text;
@@ -83,7 +101,9 @@ class HomeController extends GetxController {
           width: Get.mediaQuery.size.width * 0.1,
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            _irVistaPrevia();
+          },
           icon: Icon(
             Icons.check,
             color: Colors.green,
@@ -91,5 +111,11 @@ class HomeController extends GetxController {
         ),
       ],
     );
+  }
+
+  void _clear() {
+    nombreInputController.clear();
+    telefonoInputController.clear();
+    vendedorInputController.clear();
   }
 }
