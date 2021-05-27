@@ -7,43 +7,48 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Generar Comprobante'),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: Get.mediaQuery.size.height * 0.60,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 25.0,
-          ),
-          child: Form(
-            key: controller.formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _nombreField,
-                _telField,
-                _vendedorField,
-              ],
+    return GestureDetector(
+      onTap: () {
+        controller.unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Generar Comprobante'),
+          centerTitle: true,
+        ),
+        body: Container(
+          height: Get.mediaQuery.size.height * 0.60,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 25.0,
+            ),
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _nombreField,
+                  _telField,
+                  _vendedorField,
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          if (controller.formKey.currentState != null) {
-            if (controller.formKey.currentState!.validate()) {
-              controller.pregunta();
+        floatingActionButton: ElevatedButton(
+          onPressed: () {
+            if (controller.formKey.currentState != null) {
+              if (controller.formKey.currentState!.validate()) {
+                controller.pregunta();
+              }
             }
-          }
-        },
-        child: Text("GENERAR"),
+          },
+          child: Text("GENERAR"),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

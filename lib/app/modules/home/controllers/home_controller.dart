@@ -56,6 +56,8 @@ class HomeController extends GetxController {
 
     _clear();
 
+    unfocus();
+
     Get.back();
     Get.toNamed(
       Routes.VISTA_PREVIA,
@@ -117,5 +119,11 @@ class HomeController extends GetxController {
     nombreInputController.clear();
     telefonoInputController.clear();
     vendedorInputController.clear();
+  }
+
+  void unfocus() {
+    if (Get.focusScope != null) {
+      Get.focusScope!.unfocus();
+    }
   }
 }

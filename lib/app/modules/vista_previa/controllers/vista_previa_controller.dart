@@ -4,6 +4,7 @@ import 'package:comprobante/app/data/models/Comprobante.dart';
 
 class VistaPreviaController extends GetxController {
   var comprobante = Get.arguments as Comprobante;
+  //var comprobante = Comprobante("Mateo", "0983342745", "Giulliano");
   @override
   void onInit() {
     super.onInit();
@@ -11,11 +12,6 @@ class VistaPreviaController extends GetxController {
 
   @override
   void onReady() {
-    print(comprobante.nombre);
-    print(comprobante.telefono);
-    print(comprobante.vendedor);
-    print(comprobante.identificador);
-
     super.onReady();
   }
 
