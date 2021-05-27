@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   var nombreInputController = TextEditingController(text: "");
   var telefonoInputController = TextEditingController(text: "");
   var vendedorInputController = TextEditingController(text: "");
+  var numeroInputController = TextEditingController(text: "");
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -48,12 +49,27 @@ class HomeController extends GetxController {
     }
   }
 
-  void _irVistaPrevia() {
-    var nombre = nombreInputController.text;
-    var tel = telefonoInputController.text;
-    var vendedor = vendedorInputController.text;
-    var comprobante = Comprobante(nombre, tel, vendedor);
+  String? validatorNum(String? value) {
+    if (value == null) {
+      return "Campo obligatorio";
+    }
+    if (value.isEmpty) {
+      return "Campo obligatorio";
+    }
+    if (!value.isNumericOnly) {
+      return "Este campo debe ser numérico";
+    }
+    var valor = int.tryParse(value);
+    if (valor != null) {
+      if (valor <= 0) {
+        return "Debe ser mayor a 0";
+      }
+    } else {
+      return "Este campo debe ser numérico";
+    }
+  }
 
+  void _irVistaPrevia(Comprobante comprobante) {
     _clear();
 
     unfocus();
@@ -69,6 +85,7 @@ class HomeController extends GetxController {
     var nombre = nombreInputController.text;
     var tel = telefonoInputController.text;
     var vendedor = vendedorInputController.text;
+    var numero = numeroInputController.text;
 
     Get.defaultDialog(
       title: "\nConfirmar Datos",
@@ -85,6 +102,7 @@ class HomeController extends GetxController {
               Text("Nombre: $nombre"),
               Text("Teléfono: $tel"),
               Text("Vendedor: $vendedor"),
+              Text("Número: $numero"),
             ],
           ),
         ),
@@ -104,7 +122,14 @@ class HomeController extends GetxController {
         ),
         IconButton(
           onPressed: () {
-            _irVistaPrevia();
+            _irVistaPrevia(
+              Comprobante(
+                nombre,
+                tel,
+                vendedor,
+                int.parse(numero),
+              ),
+            );
           },
           icon: Icon(
             Icons.check,
@@ -119,6 +144,7 @@ class HomeController extends GetxController {
     nombreInputController.clear();
     telefonoInputController.clear();
     vendedorInputController.clear();
+    numeroInputController.clear();
   }
 
   void unfocus() {

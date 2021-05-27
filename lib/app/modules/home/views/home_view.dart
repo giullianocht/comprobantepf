@@ -13,7 +13,7 @@ class HomeView extends GetView<HomeController> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Generar Comprobante'),
+          title: Text('Comprobante Rifa'),
           centerTitle: true,
         ),
         body: Container(
@@ -32,20 +32,26 @@ class HomeView extends GetView<HomeController> {
                   _nombreField,
                   _telField,
                   _vendedorField,
+                  _numField,
                 ],
               ),
             ),
           ),
         ),
-        floatingActionButton: ElevatedButton(
-          onPressed: () {
-            if (controller.formKey.currentState != null) {
-              if (controller.formKey.currentState!.validate()) {
-                controller.pregunta();
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+            bottom: Get.mediaQuery.size.height * 0.1,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              if (controller.formKey.currentState != null) {
+                if (controller.formKey.currentState!.validate()) {
+                  controller.pregunta();
+                }
               }
-            }
-          },
-          child: Text("GENERAR"),
+            },
+            child: Text("GENERAR COMPROBANTE"),
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
@@ -55,7 +61,7 @@ class HomeView extends GetView<HomeController> {
   TextFormField get _nombreField => TextFormField(
         controller: controller.nombreInputController,
         decoration: InputDecoration(
-          labelText: "Nombre",
+          labelText: "Nombre del comprador",
         ),
         validator: controller.validator,
       );
@@ -64,7 +70,8 @@ class HomeView extends GetView<HomeController> {
         controller: controller.telefonoInputController,
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
-          labelText: "Teléfono",
+          labelText: "Teléfono del comprador",
+          hintText: "Ej: 0983342745",
         ),
         validator: controller.validatorTel,
       );
@@ -72,8 +79,16 @@ class HomeView extends GetView<HomeController> {
   TextFormField get _vendedorField => TextFormField(
         controller: controller.vendedorInputController,
         decoration: InputDecoration(
-          labelText: "Vendedor",
+          labelText: "Nombre del vendedor",
         ),
         validator: controller.validator,
+      );
+  TextFormField get _numField => TextFormField(
+        controller: controller.numeroInputController,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          labelText: "Número de boleta",
+        ),
+        validator: controller.validatorNum,
       );
 }

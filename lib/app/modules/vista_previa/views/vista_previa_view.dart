@@ -46,11 +46,20 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                     25.0,
                   ),
                   _text(
-                    "Identificador",
-                    controller.comprobante.identificador,
-                    15.0,
+                    "Número",
+                    controller.comprobante.numero.toString(),
+                    25.0,
                   ),
                 ],
+              ),
+              Positioned(
+                bottom: 5.0,
+                child: Text(
+                  "<ID:${controller.comprobante.identificador}>",
+                  style: TextStyle(
+                    fontSize: 13.5,
+                  ),
+                ),
               ),
             ],
           ),
