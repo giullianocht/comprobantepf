@@ -14,8 +14,8 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
       ),
       body: Center(
         child: Container(
-          height: 540,
-          width: 540,
+          height: Get.mediaQuery.size.height * 0.75,
+          width: Get.mediaQuery.size.width * 0.95,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -23,7 +23,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                 image: AssetImage(
                   "assets/base-rifa.png",
                 ),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
@@ -57,7 +57,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                 child: Text(
                   "<ID:${controller.comprobante.identificador}>",
                   style: TextStyle(
-                    fontSize: 13.5,
+                    fontSize: 8.0,
                   ),
                 ),
               ),
@@ -75,6 +75,8 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
         "$titulo: $dato",
         style: TextStyle(
           fontSize: size,
+          fontFamily: "More",
+          color: Colors.blue,
         ),
       ),
     );

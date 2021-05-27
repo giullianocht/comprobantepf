@@ -19,6 +19,14 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+
   assets:
     - assets/base-rifa.png
+    
+  fonts:
+    - family: More
+      fonts:
+        - asset: fonts/More-Sugar.otf
+        - asset: fonts/More-Sugar-Thin.otf
+        - asset: fonts/More-Sugar-Extras.otf
 
