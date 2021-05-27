@@ -36,7 +36,9 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: ElevatedButton(
         onPressed: () {
           if (controller.formKey.currentState != null) {
-            if (controller.formKey.currentState!.validate()) {}
+            if (controller.formKey.currentState!.validate()) {
+              controller.pregunta();
+            }
           }
         },
         child: Text("GENERAR"),

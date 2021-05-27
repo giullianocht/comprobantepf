@@ -44,4 +44,52 @@ class HomeController extends GetxController {
       return "Este campo debe tener 10 números";
     }
   }
+
+  void pregunta() {
+    var nombre = nombreInputController.text;
+    var tel = telefonoInputController.text;
+    var vendedor = vendedorInputController.text;
+
+    Get.defaultDialog(
+      title: "\nConfirmar Datos",
+      content: Container(
+        height: Get.mediaQuery.size.height * 0.35,
+        width: Get.mediaQuery.size.width * 0.70,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Nombre: $nombre"),
+              Text("Teléfono: $tel"),
+              Text("Vendedor: $vendedor"),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        ),
+        SizedBox(
+          width: Get.mediaQuery.size.width * 0.1,
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        ),
+      ],
+    );
+  }
 }
