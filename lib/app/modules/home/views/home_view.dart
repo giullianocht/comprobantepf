@@ -11,49 +11,58 @@ class HomeView extends GetView<HomeController> {
       onTap: () {
         controller.unfocus();
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Comprobante Rifa'),
-          centerTitle: true,
-        ),
-        body: Container(
-          height: Get.mediaQuery.size.height * 0.60,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8.0,
-              horizontal: 25.0,
-            ),
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _nombreField,
-                  _telField,
-                  _vendedorField,
-                  _numField,
-                ],
+      child: GestureDetector(
+        onTap: () {
+          Get.focusScope!.unfocus();
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Comprobante Rifa'),
+            centerTitle: true,
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              height: Get.mediaQuery.size.height * 0.60,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8.0,
+                  horizontal: 25.0,
+                ),
+                child: Form(
+                  key: controller.formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _nombreField,
+                      _telField,
+                      _vendedorField,
+                      _numField,
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(
-            bottom: Get.mediaQuery.size.height * 0.1,
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-              if (controller.formKey.currentState != null) {
-                if (controller.formKey.currentState!.validate()) {
-                  controller.pregunta();
+          floatingActionButton: Padding(
+            padding: EdgeInsets.only(
+              bottom: Get.mediaQuery.size.height * 0.1,
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                if (controller.formKey.currentState != null) {
+                  if (controller.formKey.currentState!.validate()) {
+                    controller.pregunta();
+                  }
                 }
-              }
-            },
-            child: Text("GENERAR COMPROBANTE"),
+              },
+              child: Text("GENERAR COMPROBANTE"),
+            ),
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          resizeToAvoidBottomInset: false,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
