@@ -75,7 +75,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
         "$titulo: $dato",
         style: TextStyle(
           fontSize: size,
-          fontFamily: "More",
+          //fontFamily: "More",
           color: Colors.blue,
         ),
       ),
