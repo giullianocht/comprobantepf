@@ -17,27 +17,29 @@ class HomeView extends GetView<HomeController> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Comprobante Rifa'),
-            centerTitle: true,
+            title: Text("Comprobante"),
             actions: [
-              Padding(
-                padding:
-                    EdgeInsets.only(right: Get.mediaQuery.size.width * 0.05),
-                child: Material(
-                  color: Get.theme.primaryColor,
-                  child: TextButton(
-                    onPressed: () {
-                      controller.clearAll();
-                    },
-                    child: Text(
-                      "Limpiar Campos",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+              IconButton(
+                onPressed: () {
+                  controller.clearAll();
+                },
+                icon: Icon(Icons.clear),
               ),
+              SizedBox(
+                width: 20.0,
+              ),
+              IconButton(
+                onPressed: () {
+                  if (controller.formKey.currentState != null) {
+                    if (controller.formKey.currentState!.validate()) {
+                      controller.pregunta();
+                    }
+                  }
+                },
+                icon: Icon(
+                  Icons.check,
+                ),
+              )
             ],
           ),
           body: Container(
@@ -68,24 +70,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ),
-          floatingActionButton: Padding(
-            padding: EdgeInsets.only(
-              bottom: Get.mediaQuery.size.height * 0.1,
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                if (controller.formKey.currentState != null) {
-                  if (controller.formKey.currentState!.validate()) {
-                    controller.pregunta();
-                  }
-                }
-              },
-              child: Text("GENERAR COMPROBANTE"),
-            ),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          resizeToAvoidBottomInset: false,
         ),
       ),
     );
