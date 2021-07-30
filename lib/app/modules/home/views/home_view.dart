@@ -23,7 +23,7 @@ class HomeView extends GetView<HomeController> {
                 onPressed: () {
                   controller.clearAll();
                 },
-                icon: Icon(Icons.clear),
+                icon: Icon(Icons.refresh),
               ),
               SizedBox(
                 width: 20.0,
