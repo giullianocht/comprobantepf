@@ -11,7 +11,6 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Vista Previa"),
-        centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
           Padding(
