@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/home_controller.dart';
+import 'package:comprobante/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
@@ -19,26 +19,50 @@ class HomeView extends GetView<HomeController> {
           appBar: AppBar(
             title: Text('Comprobante Rifa'),
             centerTitle: true,
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              height: Get.mediaQuery.size.height * 0.60,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 25.0,
+            actions: [
+              Padding(
+                padding:
+                    EdgeInsets.only(right: Get.mediaQuery.size.width * 0.05),
+                child: Material(
+                  color: Get.theme.primaryColor,
+                  child: TextButton(
+                    onPressed: () {
+                      controller.clearAll();
+                    },
+                    child: Text(
+                      "Limpiar Campos",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
-                child: Form(
-                  key: controller.formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _nombreField,
-                      _telField,
-                      _vendedorField,
-                      _numField,
-                    ],
+              ),
+            ],
+          ),
+          body: Container(
+            height: Get.mediaQuery.size.height,
+            width: Get.mediaQuery.size.width,
+            child: SingleChildScrollView(
+              child: Container(
+                height: Get.mediaQuery.size.height * 0.60,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 25.0,
+                  ),
+                  child: Form(
+                    key: controller.formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _nombreField,
+                        _telField,
+                        _vendedorField,
+                        _numField,
+                      ],
+                    ),
                   ),
                 ),
               ),

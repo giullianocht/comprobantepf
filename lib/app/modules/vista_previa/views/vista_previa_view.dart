@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/vista_previa_controller.dart';
+import 'package:comprobante/app/modules/home/controllers/home_controller.dart';
+import 'package:comprobante/app/modules/vista_previa/controllers/vista_previa_controller.dart';
 
 class VistaPreviaView extends GetView<VistaPreviaController> {
   @override
@@ -11,6 +12,31 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
       appBar: AppBar(
         title: Text("Vista Previa"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: Get.mediaQuery.size.width * 0.05),
+            child: Material(
+              color: Get.theme.primaryColor,
+              child: TextButton(
+                onPressed: () {
+                  try {
+                    Get.find<HomeController>().clearNumero();
+                    Get.back();
+                  } catch (e) {
+                    print("NDIRIKIRI");
+                  }
+                },
+                child: Text(
+                  "Crear Otro",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: Container(
@@ -75,8 +101,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
         "$titulo: $dato",
         style: TextStyle(
           fontSize: size,
-          //fontFamily: "More",
-          color: Colors.blue,
+          color: Get.theme.primaryColor,
         ),
       ),
     );

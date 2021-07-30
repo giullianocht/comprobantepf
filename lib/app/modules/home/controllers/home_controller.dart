@@ -70,8 +70,6 @@ class HomeController extends GetxController {
   }
 
   void _irVistaPrevia(Comprobante comprobante) {
-    _clear();
-
     unfocus();
 
     Get.back();
@@ -140,10 +138,14 @@ class HomeController extends GetxController {
     );
   }
 
-  void _clear() {
+  void clearAll() {
     nombreInputController.clear();
     telefonoInputController.clear();
     vendedorInputController.clear();
+    numeroInputController.clear();
+  }
+
+  void clearNumero() {
     numeroInputController.clear();
   }
 
