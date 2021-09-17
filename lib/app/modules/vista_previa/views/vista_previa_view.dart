@@ -10,7 +10,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vista Previa"),
+        title: Text("Entrada Generada"),
         automaticallyImplyLeading: false,
         actions: [
           Padding(
@@ -29,7 +29,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                 child: Text(
                   "Crear Otro",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -101,6 +101,7 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
         style: TextStyle(
           fontSize: size,
           color: Get.theme.primaryColor,
+          fontWeight: FontWeight.w700,
         ),
       ),
     );

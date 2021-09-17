@@ -10,7 +10,7 @@ void main() {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Comprobante PF",
+      title: "Entrada PS",
       initialRoute: AppPages.INITIAL,
       theme: appThemeData,
       getPages: AppPages.routes,
