@@ -27,15 +27,35 @@ class VistaPreviaController extends GetxController {
   @override
   void onClose() {}
 
+  void dialogoCargando() {
+    if (Get.isDialogOpen != null && !Get.isDialogOpen!) {
+      Get.dialog(
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+  }
+
+  void dialogoCargandoCerrar() {
+    if (Get.isDialogOpen != null && Get.isDialogOpen!) {
+      Get.back();
+    }
+  }
+
   void shareImage() async {
-    screenshotController.captureFromWidget(imageToShare()).then((image) async {
-      final directory = await getApplicationDocumentsDirectory();
+    dialogoCargando();
 
-      final imagePath = await File('${directory.path}/image.png').create();
-      await imagePath.writeAsBytes(image);
+    var image = await screenshotController.captureFromWidget(imageToShare());
 
-      await Share.shareFiles([imagePath.path]);
-    });
+    final directory = await getApplicationDocumentsDirectory();
+
+    final imagePath = await File('${directory.path}/image.png').create();
+    await imagePath.writeAsBytes(image);
+
+    await Share.shareFiles([imagePath.path]);
+
+    dialogoCargandoCerrar();
   }
 
   Widget imageToShare() {

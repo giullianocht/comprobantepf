@@ -38,6 +38,14 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
         ],
       ),
       body: controller.imageToPreview(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.shareImage();
+        },
+        child: Icon(
+          Icons.share,
+        ),
+      ),
     );
   }
 }
