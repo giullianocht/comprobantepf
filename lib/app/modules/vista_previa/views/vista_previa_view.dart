@@ -23,13 +23,13 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                     Get.find<HomeController>().clearNumero();
                     Get.back();
                   } catch (e) {
-                    print("NDIRIKIRI");
+                    print(e);
                   }
                 },
                 child: Text(
                   "Crear Otro",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),

@@ -1,7 +1,7 @@
 name: comprobante
 version: 1.0.0+1
 publish_to: none
-description: Aguante PF
+description: Rifa
 environment: 
   sdk: '>=2.12.0 <3.0.0'
 
@@ -22,11 +22,4 @@ flutter:
 
   assets:
     - assets/base-rifa.png
-    
-  fonts:
-    - family: More
-      fonts:
-        - asset: fonts/More-Sugar.otf
-        - asset: fonts/More-Sugar-Thin.otf
-        - asset: fonts/More-Sugar-Extras.otf
 

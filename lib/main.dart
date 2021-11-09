@@ -10,7 +10,7 @@ void main() {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Entrada PS",
+      title: "Rifa",
       initialRoute: AppPages.INITIAL,
       theme: appThemeData,
       getPages: AppPages.routes,
