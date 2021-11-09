@@ -71,6 +71,11 @@ class VistaPreviaView extends GetView<VistaPreviaController> {
                     25.0,
                   ),
                   _text(
+                    "Precio",
+                    "10.000 GS",
+                    25.0,
+                  ),
+                  _text(
                     "Número",
                     controller.comprobante.numero.toString(),
                     25.0,
