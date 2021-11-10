@@ -46,7 +46,12 @@ class VistaPreviaController extends GetxController {
   void shareImage() async {
     dialogoCargando();
 
-    var image = await screenshotController.captureFromWidget(imageToShare());
+    var pixelRatio = Get.mediaQuery.devicePixelRatio;
+
+    var image = await screenshotController.captureFromWidget(
+      imageToShare(),
+      pixelRatio: pixelRatio,
+    );
 
     final directory = await getApplicationDocumentsDirectory();
 
@@ -59,13 +64,16 @@ class VistaPreviaController extends GetxController {
   }
 
   Widget imageToShare() {
-    return _createImage(1080, 1080);
+    return _createImage(
+      1080,
+      1080,
+    );
   }
 
   Widget imageToPreview() {
     return _createImage(
-      Get.mediaQuery.size.height * 0.75,
-      Get.mediaQuery.size.width * 0.95,
+      1080,
+      1080,
     );
   }
 
@@ -75,66 +83,54 @@ class VistaPreviaController extends GetxController {
     );
     var image = Image(
       image: imageAsset,
-      fit: BoxFit.fill,
     );
-    return Center(
-      child: Container(
-        height: height,
-        width: width,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            image,
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _text(
-                  "Nombre",
-                  comprobante.nombre,
-                  25.0,
-                ),
-                _text(
-                  "Teléfono",
-                  comprobante.telefono,
-                  25.0,
-                ),
-                _text(
-                  "Vendedor",
-                  comprobante.vendedor,
-                  25.0,
-                ),
-                _text(
-                  "Precio",
-                  "10.000 GS",
-                  25.0,
-                ),
-                _text(
-                  "Número",
-                  comprobante.numero.toString(),
-                  25.0,
-                ),
-              ],
-            ),
-            Positioned(
-              bottom: 5.0,
-              child: Text(
-                "<ID:${comprobante.identificador}>",
-                style: TextStyle(
-                  fontSize: 8.0,
-                ),
-              ),
-            ),
-          ],
+
+    return _imageBody(image);
+  }
+
+  Widget _imageBody(Image image) {
+    var base = 100.0;
+    var espacio = 45.0;
+    return Stack(
+      children: [
+        image,
+        _text(
+          "Nombre",
+          comprobante.nombre,
+          17.0,
+          base,
         ),
-      ),
+        _text(
+          "Teléfono",
+          comprobante.telefono,
+          17.0,
+          base + espacio,
+        ),
+        _text(
+          "Vendedor",
+          comprobante.vendedor,
+          17.0,
+          base + (espacio * 2),
+        ),
+        _text(
+          "Precio",
+          "10.000 GS",
+          17.0,
+          base + (espacio * 3),
+        ),
+        _text(
+          "Número",
+          comprobante.numero.toString(),
+          17.0,
+          base + (espacio * 4),
+        ),
+      ],
     );
   }
 
-  Widget _text(String titulo, String dato, double size) {
+  Widget _text(String titulo, String dato, double size, double espacio) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(top: espacio, left: 10.0),
       child: Text(
         "$titulo: $dato",
         style: TextStyle(
