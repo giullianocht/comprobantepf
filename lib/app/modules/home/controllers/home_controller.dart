@@ -32,6 +32,7 @@ class HomeController extends GetxController {
     if (value.isEmpty) {
       return "Campo obligatorio";
     }
+    return null;
   }
 
   String? validatorTel(String? value) {
@@ -47,6 +48,7 @@ class HomeController extends GetxController {
     if (value.length != 10) {
       return "Este campo debe tener 10 números";
     }
+    return null;
   }
 
   String? validatorNum(String? value) {
@@ -67,6 +69,7 @@ class HomeController extends GetxController {
     } else {
       return "Este campo debe ser numérico";
     }
+    return null;
   }
 
   void _irVistaPrevia(Comprobante comprobante) {
